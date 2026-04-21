@@ -8,3 +8,5 @@ zig-source
 .playwright-mcp
 .playwright-cli/
 .claude/
+rust/target/
+rust/Cargo.lock

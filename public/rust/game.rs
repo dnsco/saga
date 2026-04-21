@@ -10,6 +10,27 @@ pub struct Elevator {
 }
 
 impl Elevator {
+    pub fn new(
+        id: u32,
+        current_floor: i32,
+        destination_floor: Option<i32>,
+        percent_full: f32,
+        pressed_buttons: Vec<i32>,
+    ) -> Self {
+        Elevator {
+            id,
+            current_floor_val: current_floor,
+            destination_floor_val: destination_floor,
+            percent_full_val: percent_full,
+            pressed_buttons,
+            commands: Vec::new(),
+        }
+    }
+
+    pub fn id(&self) -> u32 {
+        self.id
+    }
+
     pub fn current_floor(&self) -> i32 {
         self.current_floor_val
     }
@@ -29,6 +50,10 @@ impl Elevator {
     pub fn go_to_floor(&mut self, floor: i32) {
         self.commands.push((self.id, floor));
     }
+
+    pub fn take_commands(&mut self) -> Vec<(u32, i32)> {
+        std::mem::take(&mut self.commands)
+    }
 }
 
 pub struct Floor {
@@ -38,6 +63,14 @@ pub struct Floor {
 }
 
 impl Floor {
+    pub fn new(level: i32, up: bool, down: bool) -> Self {
+        Floor {
+            level_val: level,
+            up,
+            down,
+        }
+    }
+
     pub fn level(&self) -> i32 {
         self.level_val
     }

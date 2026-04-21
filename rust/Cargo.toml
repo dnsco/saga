@@ -1,0 +1,19 @@
+[package]
+name = "saga"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "saga"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sim"
+path = "src/bin/sim.rs"
+
+[dependencies]
+rand = "0.8"
+rand_chacha = "0.3"
+
+[profile.release]
+lto = true
